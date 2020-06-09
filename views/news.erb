@@ -18,12 +18,61 @@
     <!-- Your own CSS -->
     <link rel="stylesheet" href="/styles.css">
 
-    <title>News</title>
+    <title>News and Weather</title>
+  </head>
+  <body>
+
+<title>News and Weather</title>
   </head>
   <body>
 
     <div class="container mt-5">
-      <h1>News</h1>
+      <h1 class="title">News and Weather </h1>
+    </div>
+
+    <hr>
+      <div class="container mt-5">
+        <h3 class="weather-title">Weather</h3>
+          <hr class="my-4">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h4 class="current">Current Weather:</h4>
+                    <h5>
+                        <%= @forecast["current"]["weather"][0]["main"] %>
+                    </h5>
+                    <h5>
+                        <p class="wf-text2"><%= @forecast["current"]["temp"] %>F </p>
+                    </h5>
+                </div>
+              </div>
+            </div>
+
+             <div class="container mt-5">
+              <h4>7-day Forecast</h4>
+            </div>
+             <div class="container mt-5">
+                <% for day in @forecast["daily"] %>
+                        <p class="wf-text1">   Weather: <%= day["weather"][0]["main"] %> [Max: <%= day["temp"]["max"] %>F
+                           Min:<%= day["temp"]["min"] %> F]</p>
+                <% end %>
+            </div>
+       
+    <div class="container mt-5">
+        <div class="row">
+           <h2 class="title">News</h2>
+         </div>
+    </div>
+
+    <div class="container mt-5">
+                <% for news in @news["articles"] %>
+                   <div class="container mt-5">
+                      <a href="<%= news["url"] %>" 
+                      <h4><%= news["title"] %></h4> </a>
+                   </div>
+                　　　<h5><%= news["content"] %></h5>　
+                   </div>      
+                   
+            <% end %>
     </div>
 
     <!-- Optional JavaScript -->
